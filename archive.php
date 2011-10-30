@@ -10,7 +10,7 @@
         	
             	<h3><em><?php _e('Archive','woothemes'); ?> |</em> <?php echo single_cat_title(); ?></h3>        
             	
-            	<div class="archivefeed"><?php $cat_obj = $wp_query->get_queried_object(); $cat_id = $cat_obj->cat_ID; echo '<a href="'; get_category_rss_link(true, $cat, ''); echo '">RSS feed for this section</a>'; ?></div>
+            	<div class="archivefeed"><?php $cat_obj = $wp_query->get_queried_object(); $cat_id = $cat_obj->cat_ID; echo '<a href="'; get_category_rss_link(true, $cat, ''); echo '" rel="nofollow">RSS feed for this section</a>'; ?></div>
             	
 				<?php } elseif (is_day()) { ?>
 				<h3><?php _e('Archive','woothemes'); ?> | <?php the_time('F jS, Y'); ?></h3>
@@ -36,7 +36,7 @@
 		
 					<div class="entry">
 						<?php if ( get_option('woo_archive_excerpt') == "true" ) { the_excerpt() ?>
-							<p><span class="continue"><a title="<?php _e('Permalink to ','woothemes'); ?> <?php the_title(); ?>" href="<?php the_permalink() ?>"><?php _e('Read the full story','woothemes'); ?></a></span></p>
+							<p><span class="continue"><a title="<?php _e('Permalink to ','woothemes'); ?> <?php the_title(); ?>" href="<?php the_permalink() ?>" rel="nofollow"><?php _e('Read the full story','woothemes'); ?></a></span></p>
 						<?php } else { the_content(__('<span class="continue">Continue Reading</span>','woothemes')); } ?>
 					</div>
 		
