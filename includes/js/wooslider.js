@@ -93,7 +93,7 @@ Version: 1.0.2
     clicker.css('opacity',0.8);
     shelf_content.find('img').css('opacity',0.3);
     
-	the_shelf.css('top',shelf_height * -1);
+	//the_shelf.css('top',shelf_height * -1);
     
     var flip = 1;
     clicker.click(function(){ 
