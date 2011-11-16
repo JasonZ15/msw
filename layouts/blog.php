@@ -40,7 +40,7 @@ title: ""
 </script>
 <script type="text/javascript" >var jiathis_config={	data_track_clickback:true, siteNum:3,
 	sm:"twitter,fb,linkedin",	hideMore:true}</script> 
-<script type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js?uid=1539614" charset="utf-8"></script>
+<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js?uid=1539614" charset="utf-8"></script>
 <!-- JiaThis Button END -->
 			</div>
 			<p class="post_date"><a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>" class="avatar_link"><?php echo get_avatar( get_the_author_meta('ID'), 32 ); ?></a><?php _e('Posted on','woothemes'); ?> <?php the_time('d F Y'); ?> by <b><?php the_author_posts_link(); ?></b>.<br /> <span class="singletags"><?php if (function_exists('the_tags')) { ?><?php the_tags('Tags: ', ', ', ''); ?><?php } ?></span></p>
