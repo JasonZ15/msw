@@ -91,7 +91,7 @@ Version: 1.0.2
     shelf.height(shelf_height);
     shelf.css('opacity',0.8);
     clicker.css('opacity',0.8);
-    shelf_content.find('img').css('opacity',0.3);
+    shelf_content.find('div').css('opacity',0.3);
     
 	//the_shelf.css('top',shelf_height * -1);
     
@@ -115,7 +115,7 @@ Version: 1.0.2
     });
 
     //Shelf image hovers and Clicks
-    shelf_content.find('img').hover(function(){
+    shelf_content.find('div').hover(function(){
         jQuery(this).stop().animate({opacity:1});
         var title = jQuery(this).attr('alt');
         shelf_title.html(title);
@@ -124,9 +124,16 @@ Version: 1.0.2
 	        jQuery(this).stop().animate({opacity:0.3})
 	        shelf_title.html(shelf_title_default).fadeIn(300);
 	 });
+	 
+	 
     
     shelf_content.find('span').click(function(){
 	        var shelf_rel = jQuery(this).attr('class');
+        var shelf_click = jQuery(this).prev().attr('title');
+        var i = 0;
+        var dif = shelf_click - slider_tracker;
+        if (dif > 0){ while(i < dif) {nav_right.click();i++;}}
+        if (dif < 0){ while(i > dif) {nav_left.click();i--;}}
 	 });
     
     shelf_content.find('img').click(function(){
