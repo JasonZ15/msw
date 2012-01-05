@@ -17,7 +17,7 @@ Author URI: http://www.woothemes.com/
 body{
 	color: #333;
 	background: #ddd url(images/gradient_texture.png) repeat 0 0;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 12px;
 	line-height: 18px;
 }
@@ -729,8 +729,8 @@ img.centered {
 .singletags a { font-weight: normal !important; text-decoration:underline;color:#000000; }
 .entry p{
 	text-align:left;
-	font-size:12px;
-	line-height:18px;
+	font-size:14px;
+	line-height:20px;
 	}
 .entry blockquote {
 	padding: 10px;
