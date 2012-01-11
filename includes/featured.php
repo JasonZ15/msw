@@ -36,7 +36,6 @@
 		        <div class="slide-content slide-content-<?php echo $counter; ?>">
 		            <div class="slide-content-inner-<?php echo $counter; ?>">
 		                <h3><?php the_title(); ?></h3>
-		                <p><?php echo strip_tags(get_the_excerpt(), '<a><strong>'); ?></p>
 		            </div>
 		        </div>
 		    </div>

@@ -89,8 +89,7 @@ li{
 	padding: 2px 0px !important;
 	background-color: #FFFFFF;
 	margin:15px 15px 0px !important;
-	border-top:1px solid #ddd;
-	border-bottom:1px solid #ddd;
+	border-top: 1px dotted #eee;
 	width: 930px !important;
 }
 #nav-left {
@@ -108,8 +107,8 @@ li{
 	}
 .language {
 	position: absolute;
-	top: -93px;
-	right: 19px;
+	top: -136px;
+	right: 265px;
 	z-index: 999999999;
 }
 .language p { color: #ccc; font: bold 11px Arial;}
@@ -209,13 +208,13 @@ li{
 	font-size:13px;
 	float:left;
 	width:930px;
-	border-top: 1px solid #DDDDDD;
+	border-top: 1px dotted #eee;
 }
 #nav2 a {
 	display: block;
 	padding-left:15px;
 	padding-right:15px;
-	border-right: 1px solid #DDDDDD;
+	border-right: 0px solid #DDDDDD;
 }
 #nav2 li {
 	float: left;
@@ -531,7 +530,7 @@ li{
 	line-height: 26px;
 }
 .post-alt h3{
-	font-size: 13px;
+	font-size: 16px;
 	padding-bottom: 5px;
 	line-height: 18px;
 	color: #000000;

@@ -16,7 +16,7 @@
 	if (have_posts()) : $counter = 0;
 	while (have_posts()) : the_post(); $counter++;
 	?>
-		<div class="post-alt blog" style="padding-bottom: 16px; border-bottom: 1px dotted #ccc;">
+		<div class="post-alt blog" style="padding-bottom: 16px; border-bottom: 1px dotted #ddd;">
             <?php if ( get_option('woo_blog_excerpt') == "true" ) { ?><div class="entry"><?php woo_image('width='.get_option('woo_home_thumb_width').'&class=alignright'); ?> </div><?php } ?>
             
 			<h2><a title="<?php _e('Permanent Link to','woothemes'); ?> <?php the_title(); ?>" href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h2>

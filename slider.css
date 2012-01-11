@@ -34,6 +34,8 @@ Version: 1.0.0 (beta)
 .slider-pag span .thumbnail { display: inline; position: static; }
 .shelf-title {padding: 10px 10px; font-size:0.8em}
 
+.slider-container h3 {font-weight: normal;}
+
 /* IE */
 * html .slider-nav .slider-right { background: url('images/fleche2.gif') no-repeat center bottom; }
 * html .slider-nav .slider-left { background: url('images/fleche1.gif') no-repeat center bottom; }
