@@ -731,6 +731,8 @@ img.centered {
 	text-align:left;
 	font-size:14px;
 	line-height:20px;
+	color: #000;
+	font-family: Helvetica, arial, clean, sans-serif;
 	}
 .entry blockquote {
 	padding: 10px;
