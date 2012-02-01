@@ -23,7 +23,10 @@ require_once ($includes_path . 'theme-widgets.php');		// Theme widgets
 /* You can add custom functions below */
 /*-----------------------------------------------------------------------------------*/
 
-
+function custom_excerpt_more( $more ) {
+	return '...';
+}
+add_filter( 'excerpt_more', 'custom_excerpt_more' );
 
 
 
