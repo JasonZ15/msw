@@ -16,12 +16,12 @@
 	if (have_posts()) : $counter = 0;
 	while (have_posts()) : the_post(); $counter++;
 	?>
-		<div class="post-alt blog" style="padding-bottom: 22px; border-bottom: 1px dotted #ddd;">
+		<div class="post-alt blog">
             <?php if ( get_option('woo_blog_excerpt') == "true" ) { ?><div class="entry"><?php woo_image('width='.get_option('woo_home_thumb_width').'&class=alignright'); ?> </div><?php } ?>
             
 			<h2><a title="<?php _e('Permanent Link to','woothemes'); ?> <?php the_title(); ?>" href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 			
-			<p class="post_date"><a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>" class="avatar_link"><?php echo get_avatar( get_the_author_meta('ID'), 32 ); ?></a>By <b><?php the_author_posts_link(); ?></b> | <?php the_time('F d, Y'); ?> | <span class="comments"><?php comments_popup_link(__('0 Comments','woothemes'), __('1 Comment','woothemes'), __('% Comments','woothemes')); ?></span><br /> <span class="singletags"><?php if (function_exists('the_tags')) { ?><?php the_tags('Tags: ', ', ', ''); ?><?php } ?></span><span class="clear" style="clear: left; display: block;"></span></p>
+			<p class="post_date"><a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>" class="avatar_link"><?php echo get_avatar( get_the_author_meta('ID'), 32 ); ?></a>By <b><?php the_author_posts_link(); ?></b> | <?php the_time('F d, Y'); ?> | <span class="comments"><?php comments_popup_link(__('0 Comments','woothemes'), __('1 Comment','woothemes'), __('% Comments','woothemes')); ?></span><br /> <span class="singletags"><?php if (function_exists('the_tags')) { ?><?php the_tags('Tags: ', ', ', ''); ?><?php } ?></span><span class="clear"></span></p>
 			<div class="entry">
 				<?php if ( get_option('woo_blog_excerpt') == "true" ) { the_excerpt() ?>
 					<p style="float: left;"><span class="continue"><a title="<?php _e('Permalink to ','woothemes'); ?> <?php the_title(); ?>" href="<?php the_permalink() ?>"><?php _e('Read More','woothemes'); ?></a></span></p>

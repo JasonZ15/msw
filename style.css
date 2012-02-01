@@ -516,6 +516,11 @@ li{
 	margin: 0 0 15px 0;
 	
 }
+.box .post-alt {
+	padding-bottom: 22px; 
+	border-bottom: 1px dotted #ddd;
+}
+.box .post_date span.clear {clear: left; display: block;}
 .post-alt .entry a {
 	color: #D3031C;
 	font-weight: bold;
