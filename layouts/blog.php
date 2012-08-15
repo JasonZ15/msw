@@ -26,33 +26,8 @@
 				<?php if ( get_option('woo_blog_excerpt') == "true" ) { the_excerpt() ?>
 					<p style="float: left;"><span class="continue"><a title="<?php _e('Permalink to ','woothemes'); ?> <?php the_title(); ?>" href="<?php the_permalink() ?>"><?php _e('Read More','woothemes'); ?></a></span></p>
 				<?php } else { the_content(__('<span class="continue">Continue Reading</span>','woothemes')); } ?>
-                <div style="float: left; padding-left: 16px;" onmouseover="setShare('<?php the_title(); ?>', '<?php the_permalink() ?>');">
-			<!-- JiaThis Button BEGIN -->
-			
-<div id="ckepop">
-<a class="jiathis_button_twitter"></a>
-<a class="jiathis_button_fb"></a>
-<a class="jiathis_button_linkedin"></a>
-<a class="jiathis_button_tsina"></a>
-<a class="jiathis_button_tqq"></a>
-<a href="http://www.jiathis.com/share?uid=1539614" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-</div>
-<script type="text/javascript">
-function setShare(title, url) {
-jiathis_config.title = title;
-jiathis_config.url = url;
-}
-var jiathis_config = {
-url: "",
-title: ""
-}
-</script><script type="text/javascript" >var jiathis_config={	data_track_clickback:true,	hideMore:false}</script>
-<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js?uid=1539614" charset="utf-8"></script><br />
-<!-- JiaThis Button END -->
-</div>
-			</div>
-			
-			 
+               
+			</div>		 
 		
 		</div><!--/post-->		
 
