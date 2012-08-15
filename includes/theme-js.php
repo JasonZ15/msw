@@ -7,5 +7,6 @@ wp_enqueue_script('scripts', get_bloginfo('template_directory').'/includes/js/sc
         wp_enqueue_script('wooslider', get_bloginfo('template_directory').'/includes/js/wooslider.js', array( 'jquery' ) );
     }
 wp_enqueue_script('superfish', get_bloginfo('template_directory').'/includes/js/superfish.js', array( 'jquery' ) );
+wp_enqueue_script('countdown', get_bloginfo('template_directory').'/includes/js/jquery.countdown.pack.js', array( 'jquery' ) );
 }
 ?>

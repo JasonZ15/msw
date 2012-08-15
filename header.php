@@ -7,6 +7,7 @@
 
 	<link href="<?php bloginfo('template_url'); ?>/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/styles/countdown.css" media="screen" />
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php if ( get_option('woo_feedburner_url') <> "" ) { echo get_option('woo_feedburner_url'); } else { echo get_bloginfo_rss('rss2_url'); } ?>" />
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
        
@@ -95,11 +96,11 @@
 				
 				<div id="search">
 					<input type="text" value="<?php _e('Enter search keyword','woothemes'); ?>" onclick="this.value='';" name="s" id="s" />
-					<input name="" type="image" src="<?php bloginfo('template_directory'); ?>/<?php woo_style_path(); ?>/search.gif" value="<?php _e('Go','woothemes'); ?>" class="btn" />
+					<input name="" type="image" value="<?php _e('Go','woothemes'); ?>" class="btn" />
 				</div><!--/search -->
 				
 			</form>
-		
+			<a href="http://www.greatwallclub.com" class="gwc_back_url">go back to gwc</a>
 		</div><!--/nav-right -->
 		
 	</div><!--/nav-->
@@ -112,8 +113,7 @@
 	       
 		<?php if (get_option('woo_texttitle') <> "true") : $logo = get_option('woo_logo'); ?>
             <a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('description'); ?>">
-                <img src="<?php if ($logo) echo $logo; else { bloginfo('template_directory'); ?>/images/logo.gif<?php } ?>" alt="<?php bloginfo('name'); ?>" />
-            </a>
+                <img src="<?php if ($logo) echo $logo; else { bloginfo('template_directory'); ?>/images/logo.gif<?php } ?>" alt="<?php bloginfo('name'); ?>" />mobile Internet insights from China</a>
         <?php endif; ?> 
         
         <?php if( is_singular() ) : ?>

@@ -9,19 +9,19 @@
 
 		<div class="slider-shelf"></div>
 
+			<span class="clicker"><?php _e('Featured Stories','woothemes'); ?></span>
 
-			<div class="slider-shelf-content" style="left: 350px;">
+			<div class="slider-shelf-content">
 				<?php
 				    $counter = 1; $count = 0;
 				    while ($the_query->have_posts()) : $the_query->the_post(); $do_not_duplicate = $post->ID;
-					$class = 'thumbnail" title="'.$counter; ?>
-					<div style="height: 70px;">
-					<?php woo_image('key=image&height=58&width=68&class=' . $class .'&id=' . get_the_id() .'&link=img&meta=' . get_the_title()); 
+					$class = 'thumbnail" title="'.$counter;
+					woo_image('key=image&height=70&width=70&class=' . $class .'&id=' . get_the_id() .'&link=img&meta=' . get_the_title()); 
 				?>
-				<span><?php echo get_the_title(); ?></span></div>
 	            <?php $shownposts[$count] = $post->ID; $count++; ?>				
 				<?php $counter++; $count++; ?>
 				<?php endwhile; ?>
+				<div class="shelf-title">&nbsp;</div>
 			</div>
 
 			<?php 
@@ -32,15 +32,10 @@
 			?>
 
 		    <div class="slide slide-<?php echo $counter; ?>">
-		        <a href="<?php the_permalink() ?>" title="<?php _e('Read the full story','woothemes'); ?>" class="open"><?php woo_get_image('image','352', $slider_height,'slider-img',90,get_the_id(),'img'); ?></a>   
+		        <a href="<?php the_permalink() ?>" title="<?php _e('Read the full story','woothemes'); ?>" class="open"><?php woo_get_image('image','595', $slider_height,'slider-img',90,get_the_id(),'img'); ?></a>   
 		        <div class="slide-content slide-content-<?php echo $counter; ?>">
 		            <div class="slide-content-inner-<?php echo $counter; ?>">
 		                <h3><?php the_title(); ?></h3>
-		                <p><?php $text = strip_tags(get_the_excerpt(), '<a><strong>');
-						if (strlen($text) > 20) {
-$text = substr($text,0,strpos($text,' ',20)); } ;
-echo $text . ' ...';				
-						 ?></p>
 		            </div>
 		        </div>
 		    </div>

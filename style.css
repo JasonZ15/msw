@@ -17,7 +17,7 @@ Author URI: http://www.woothemes.com/
 body{
 	color: #333;
 	background: #ddd url(images/gradient_texture.png) repeat 0 0;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 12px;
 	line-height: 18px;
 }
@@ -89,8 +89,7 @@ li{
 	padding: 2px 0px !important;
 	background-color: #FFFFFF;
 	margin:15px 15px 0px !important;
-	border-top:1px solid #ddd;
-	border-bottom:1px solid #ddd;
+	border-top: 1px dotted #eee;
 	width: 930px !important;
 }
 #nav-left {
@@ -104,11 +103,12 @@ li{
 	width:330px;
 	margin:0px !important;
 	padding:0px !important;
+	position: relative;
 	}
 .language {
 	position: absolute;
-	top: -93px;
-	right: 19px;
+	top: -136px;
+	right: 265px;
 	z-index: 999999999;
 }
 .language p { color: #ccc; font: bold 11px Arial;}
@@ -208,13 +208,13 @@ li{
 	font-size:13px;
 	float:left;
 	width:930px;
-	border-top: 1px solid #DDDDDD;
+	border-top: 1px dotted #eee;
 }
 #nav2 a {
 	display: block;
 	padding-left:15px;
 	padding-right:15px;
-	border-right: 1px solid #DDDDDD;
+	border-right: 0px solid #DDDDDD;
 }
 #nav2 li {
 	float: left;
@@ -266,9 +266,10 @@ li{
 #search{
 	float: right;
 	height: 27px;
-	width:310px;
+	width:241px;
 	margin: 3px 0px 0px !important;
 	padding:0px !important;
+	position: relative;
 }
 * html #search{
 	margin-right: 8px;
@@ -288,8 +289,21 @@ li{
 	height:22px;
 	width: auto;
 	margin:1px 0px 0px 5px !important;
-	border:none;
-	width:69px;
+	border: 0px solid #ccc;
+	width:0px;
+	padding-left: 30px;
+	overflow: hidden;
+	background: url(images/search_button.jpg) 0 0 no-repeat;
+	position: absolute; top: 2px; right: 3px;
+}
+#nav-right a.gwc_back_url {
+	display: block;
+	width: 0px;
+	height: 22px;
+	overflow: hidden;
+	padding-left: 69px;
+	background: url(images/gwc_button.png) 0 0 no-repeat;
+	position: absolute; top: -22px; right: 22px;
 }
 /*- Header -*/
 #header{
@@ -516,7 +530,7 @@ li{
 	line-height: 26px;
 }
 .post-alt h3{
-	font-size: 13px;
+	font-size: 16px;
 	padding-bottom: 5px;
 	line-height: 18px;
 	color: #000000;
@@ -676,7 +690,7 @@ img.centered {
 	padding-bottom:0px;
 }
 .archivefeed a {
-	background:url(images/ico-arcfeed.gif) center left no-repeat;
+	background:url(images/ico-arcfeed.png) center left no-repeat;
 	height:20px;
 	color:#000;
 	font-weight:bold;
@@ -714,8 +728,10 @@ img.centered {
 .singletags a { font-weight: normal !important; text-decoration:underline;color:#000000; }
 .entry p{
 	text-align:left;
-	font-size:12px;
-	line-height:18px;
+	font-size:14px;
+	line-height:20px;
+	color: #000;
+	font-family: Helvetica, arial, clean, sans-serif;
 	}
 .entry blockquote {
 	padding: 10px;
@@ -1154,7 +1170,7 @@ img.ui-datepicker-trigger { border: 0px; padding: 0px; }
 .entry .gform_wrapper .gfield_checkbox li, .gform_wrapper .gfield_radio li { list-style: none !important; }
 
 /* Text title */
-#logo  { float:left; height: auto; width: auto; }
+#logo  { float:left; height: 70px; width: 329px; overflow: hidden;}
 #logo img  { }
 #logo .site-title, #logo .site-description  { font-family:"Helvetica Neue", Helvetica, Arial, serif; color: #000; display:none; line-height:100px; }
 #logo .site-title a { color:#222; font-size:36px; text-transform:uppercase; font-weight:bold; text-decoration:none; }

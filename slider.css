@@ -17,16 +17,15 @@ Version: 1.0.0 (beta)
 .slider-container .slide-content { position: absolute; top: 270px; left: 0;height: 700px; width: 575px; background: #000; padding: 10px 10px 0 10px;z-index: 999;}
 
 .slider-nav .slider-left, 
-.slider-nav .slider-right {position: absolute;    cursor: pointer; height: 150px; width: 120px; z-index: 999; display: block; color: white; display: none;}
+.slider-nav .slider-right {position: absolute;    cursor: pointer; height: 150px; width: 120px; z-index: 999; display: block; color: white; }
 
 .slider-nav .slider-left { left: 0;  top: 0; background: url('images/fleche1.png') no-repeat center bottom;   }
 .slider-nav .slider-right{right: 0; top: 0; background: url('images/fleche2.png') no-repeat center bottom;}
 
 .slider-shelf { z-index: 999; background: #000; position: absolute; top:0; width: 595px; overflow: visible;}
 .slider-container span.clicker { z-index: 999; background: #000; position: absolute; top:0px; right:120px; width: auto; font-size: 11px; display: block; padding: 2px 10px; cursor: pointer;}
-.slider-shelf-content { z-index: 999; position: absolute; top:0; width: 240px;}
-.slider-shelf-content img {border:1px solid #fff; margin: 10px 6px 0 10px; cursor: pointer; float: left;}
-.slider-shelf-content span {cursor: pointer; display:block;font: normal 11px/12px Arial;padding-top: 12px;}
+.slider-shelf-content { z-index: 999; position: absolute; top:0; width: 595px;}
+.slider-shelf-content img {border:1px solid #fff; margin: 10px 0 0 10px; cursor: pointer;}
 
 .slider-pag{ float:none; position: relative; display:block}
 .slider-pag span{ float: left;margin: 10px; display: block; background: red;  background: url() center center no-repeat; position: relative; cursor: pointer;}
@@ -34,6 +33,8 @@ Version: 1.0.0 (beta)
 .slider-pag .thumbnail { display: none;border:1px solid #ccc; padding: 5px; background: #fff; position: absolute; top:25px; right: 20px ;z-index: 999;}
 .slider-pag span .thumbnail { display: inline; position: static; }
 .shelf-title {padding: 10px 10px; font-size:0.8em}
+
+.slider-container h3 {font-weight: normal;}
 
 /* IE */
 * html .slider-nav .slider-right { background: url('images/fleche2.gif') no-repeat center bottom; }

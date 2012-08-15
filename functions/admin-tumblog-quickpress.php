@@ -7,7 +7,7 @@
  * @package WooFramework
  * @subpackage Tumblog
  */
- 
+
 /*-----------------------------------------------------------------------------------
 
 TABLE OF CONTENTS
@@ -42,7 +42,7 @@ if ($content_method == 'post_format') {
 if (file_exists($iphone_function_file)) {
 	require_once ($iphone_function_file);
 }
-	
+
 //Authenticate User Permissions
 if (current_user_can( 'publish_posts')) {
 	//Register Actions
@@ -58,19 +58,19 @@ if (current_user_can( 'publish_posts')) {
 
 //Adds the Tumblog Dashboard Widget to the WP Dashboard
 function woo_register_tumblog_dashboard_widget() {
-	wp_add_dashboard_widget( 'woo_tumblog_dashboard_widget', 'Tumblog', 'woo_tumblog_dashboard_widget_output' );	
+	wp_add_dashboard_widget( 'woo_tumblog_dashboard_widget', 'Tumblog', 'woo_tumblog_dashboard_widget_output' );
 	// Globalize the metaboxes array, this holds all the widgets for wp-admin
 	global $wp_meta_boxes;
-	// Get the regular dashboard widgets array 
+	// Get the regular dashboard widgets array
 	$normal_dashboard = $wp_meta_boxes['dashboard']['normal']['core'];
 	// Backup and delete dashboard widget from the end of the array
 	$woo_tumblog_widget_backup = array( 'woo_tumblog_dashboard_widget' => $normal_dashboard['woo_tumblog_dashboard_widget']);
 	unset($normal_dashboard['woo_tumblog_dashboard_widget']);
 	// Merge the two arrays together so tumblog widget is at the beginning
 	$sorted_dashboard = array_merge($woo_tumblog_widget_backup, $normal_dashboard);
-	// Save the sorted array back into the original metaboxes 
+	// Save the sorted array back into the original metaboxes
 	$wp_meta_boxes['dashboard']['normal']['core'] = $sorted_dashboard;
-} 
+}
 
 //Loads Tumblog javascript and php js functions
 function woo_load_tumblog_libraries() {
@@ -78,7 +78,7 @@ function woo_load_tumblog_libraries() {
 	wp_enqueue_script( 'nicedit', get_template_directory_uri() . '/functions/js/nicEdit.js' );
  	wp_enqueue_script( 'phpjs', get_template_directory_uri() . '/functions/js/php.js' );
  	wp_enqueue_script( 'datepicker', get_template_directory_uri() . '/functions/js/ui.datepicker.js',array( 'jquery'));
-}    
+}
 
 //Load Tumblog CSS
 function woo_load_tumblog_css($hook) {
@@ -87,8 +87,8 @@ function woo_load_tumblog_css($hook) {
 	else {
 		echo "<link rel='stylesheet' id='colors-tabs' href='" . get_template_directory_uri() . "/functions/css/tumblog.css' type='text/css' media='all' />";
 		echo "<link rel='stylesheet' id='colors-tabs' href='" . get_template_directory_uri() . "/functions/css/jquery-ui-datepicker.css' type='text/css' media='all' />";
-	}   
-    
+	}
+
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -97,8 +97,8 @@ function woo_load_tumblog_css($hook) {
 
 //Handles AJAX Form Post from Woo QuickPress
 function woo_tumblog_ajax_post() {
-	//Publish Article							
-	if ($_POST['tumblog-type'] == 'article') 
+	//Publish Article
+	if ($_POST['tumblog-type'] == 'article')
 	{
 		$data = $_POST;
 		$type = 'note';
@@ -106,7 +106,7 @@ function woo_tumblog_ajax_post() {
 		die ( 'OK' );
 	}
 	//Publish Video
-	elseif ($_POST['tumblog-type'] == 'video') 
+	elseif ($_POST['tumblog-type'] == 'video')
 	{
 		$data = $_POST;
 		$type = 'video';
@@ -114,7 +114,7 @@ function woo_tumblog_ajax_post() {
 		die ( 'OK' );
 	}
 	//Publish Image
-	elseif ($_POST['tumblog-type'] == 'image') 
+	elseif ($_POST['tumblog-type'] == 'image')
 	{
 		$data = $_POST;
 		$type = 'image';
@@ -122,7 +122,7 @@ function woo_tumblog_ajax_post() {
 		die ( 'OK' );
 	}
 	//Publish Link
-	elseif ($_POST['tumblog-type'] == 'link') 
+	elseif ($_POST['tumblog-type'] == 'link')
 	{
 		$data = $_POST;
 		$type = 'link';
@@ -130,7 +130,7 @@ function woo_tumblog_ajax_post() {
 		die ( 'OK' );
 	}
 	//Publish Quote
-	elseif ($_POST['tumblog-type'] == 'quote') 
+	elseif ($_POST['tumblog-type'] == 'quote')
 	{
 		$data = $_POST;
 		$type = 'quote';
@@ -138,9 +138,9 @@ function woo_tumblog_ajax_post() {
 		die ( 'OK' );
 	}
 	//Publish Audio
-	elseif ($_POST['tumblog-type'] == 'audio') 
+	elseif ($_POST['tumblog-type'] == 'audio')
 	{
-		$data = $_POST;	
+		$data = $_POST;
 		$type = 'audio';
 		woo_tumblog_publish($type, $data);
 		die ( 'OK' );
@@ -156,9 +156,9 @@ function woo_tumblog_publish($type, $data) {
 	global $current_user;
     //Gets the current user's info
     get_currentuserinfo();
-    
+
     $content_method = get_option( 'woo_tumblog_content_method' );
-    
+
     //Set custom fields
 	$tumblog_custom_fields = array(	'video-embed' => 'video-embed',
 								'quote-copy' => 'quote-copy',
@@ -187,15 +187,15 @@ function woo_tumblog_publish($type, $data) {
 		$data['tumblog-content'] = str_ireplace(array( '<div>','</div>'),array( '','<br>'),$data['tumblog-content']);
 		$data['tumblog-content'] = str_ireplace(array( '<br><br><br>'),array( '<br><br>'),$data['tumblog-content']);
 		$data['tumblog-content'] = str_ireplace(array( '&nbsp;'), array( ' '),$data['tumblog-content']);
-	}	
+	}
 	//Handle Tumblog Types
-	switch ($type) 
+	switch ($type)
 	{
     	case 'note':
         	//Create post object
   			$tumbl_note['post_title'] = $data['note-title'];
   			$tumbl_note['post_content'] = $data['tumblog-content'];
-  			// DEPRECATED 
+  			// DEPRECATED
   			// if (get_option( 'tumblog_woo_tumblog_upgraded') == 'true') {
   				if ($data['tumblog-status'] != '') {
   					$tumbl_note['post_status'] = $data['tumblog-status'];
@@ -222,14 +222,14 @@ function woo_tumblog_publish($type, $data) {
   				}
   				$date_formatted = date($php_formatting, strtotime($date_raw));
   				$tumbl_note['post_date'] = $date_formatted;
-  			// DEPRECATED 
+  			// DEPRECATED
   			// }
   			$tumbl_note['post_author'] = $current_user->ID;
   			$tumbl_note['tags_input'] = $data['tumblog-tags'];
-  			
-  			// DEPRECATED 
+
+  			// DEPRECATED
   			// Get Category from Theme Options
-  			/* 
+  			/*
   			if (get_option( 'tumblog_woo_tumblog_upgraded') != 'true') {
   				$category_id = get_cat_ID( get_option( 'woo_articles_category') );
   				$categories = array($category_id);
@@ -237,11 +237,11 @@ function woo_tumblog_publish($type, $data) {
   				$categories = array();
   			}
   			*/
-  			
+
   			$categories = array();
-  			
+
   			$post_cat_array = $data['post_category'];
-  			if(empty($post_cat_array)) 
+  			if(empty($post_cat_array))
   			{
   			  //Do nothing
   			} else {
@@ -253,10 +253,10 @@ function woo_tumblog_publish($type, $data) {
   			$tumbl_note['post_category'] = $categories;
 			//Insert the note into the database
   			$post_id = wp_insert_post($tumbl_note);
-  			
-  			// DEPRECATED 
+
+  			// DEPRECATED
   			// if (get_option( 'tumblog_woo_tumblog_upgraded') == 'true') {
-  				
+
   				if ($content_method == 'post_format') {
   					set_post_format( $post_id, 'aside' );
   				} else {
@@ -275,10 +275,10 @@ function woo_tumblog_publish($type, $data) {
 					}
 					wp_set_post_terms( $post_id, $tags, 'tumblog' );
 				}
-				
-			// DEPRECATED 
+
+			// DEPRECATED
 			// }
-        	
+
         	break;
     	case 'video':
     	    //Create post object
@@ -315,8 +315,8 @@ function woo_tumblog_publish($type, $data) {
   			// }
   			$tumbl_note['post_author'] = $current_user->ID;
   			$tumbl_note['tags_input'] = $data['tumblog-tags'];
-  			
-  			// DEPRECATED 
+
+  			// DEPRECATED
   			//Get Category from Theme Options
   			/*
   			if (get_option( 'tumblog_woo_tumblog_upgraded') != 'true') {
@@ -326,11 +326,11 @@ function woo_tumblog_publish($type, $data) {
   				$categories = array();
   			}
   			*/
-  			
+
   			$categories = array();
-  			
+
   			$post_cat_array = $data['post_category'];
-  			if(empty($post_cat_array)) 
+  			if(empty($post_cat_array))
   			{
   			  //Do nothing
   			} else {
@@ -344,10 +344,10 @@ function woo_tumblog_publish($type, $data) {
   			$post_id = wp_insert_post($tumbl_note);
   			//Add Custom Field Data to the Post
     	    add_post_meta($post_id, $tumblog_custom_fields['video-embed'], $data['video-embed'], true);
-    	    
+
     	    // DEPRECATED
     	    // if (get_option( 'tumblog_woo_tumblog_upgraded') == 'true') {
-    	    	
+
     	    	if ($content_method == 'post_format') {
   					set_post_format( $post_id, 'video' );
   				} else {
@@ -366,16 +366,16 @@ function woo_tumblog_publish($type, $data) {
 					}
 					wp_set_post_terms( $post_id, $tags, 'tumblog' );
 				}
-			
+
 			// DEPRECATED
 			// }
-			
+
     	    break;
     	case 'image':
     	    //Create post object
   			$tumbl_note['post_title'] = $data['image-title'];
   			$tumbl_note['post_content'] = $data['tumblog-content'];
-  			
+
   			// DEPRECATED
   			// if (get_option( 'tumblog_woo_tumblog_upgraded') == 'true') {
   				if ($data['tumblog-status'] != '') {
@@ -403,12 +403,12 @@ function woo_tumblog_publish($type, $data) {
   				}
   				$date_formatted = date($php_formatting, strtotime($date_raw));
   				$tumbl_note['post_date'] = $date_formatted;
-  			
+
   			// DEPRECATED
   			// }
   			$tumbl_note['post_author'] = $current_user->ID;
   			$tumbl_note['tags_input'] = $data['tumblog-tags'];
-  			
+
   			// DEPRECATED
   			//Get Category from Theme Options
   			/*
@@ -419,11 +419,11 @@ function woo_tumblog_publish($type, $data) {
   				$categories = array();
   			}
   			*/
-  			
+
   			$categories = array();
-  			
+
   			$post_cat_array = $data['post_category'];
-  			if(empty($post_cat_array)) 
+  			if(empty($post_cat_array))
   			{
   			  //Do nothing
   			} else {
@@ -435,7 +435,7 @@ function woo_tumblog_publish($type, $data) {
   			$tumbl_note['post_category'] = $categories;
 			//Insert the note into the database
   			$post_id = wp_insert_post($tumbl_note);
-			//Add Custom Field Data to the Post  	        	    
+			//Add Custom Field Data to the Post
     	    if ($data['image-id'] > 0) {
     	    	$my_post = array();
     	    	$my_post['ID'] = $data['image-id'];
@@ -446,11 +446,11 @@ function woo_tumblog_publish($type, $data) {
     	    }
     	    else {
     	    	add_post_meta($post_id, $tumblog_custom_fields['image-url'], $data['image-url'], true);
-    	    } 
-    	    
+    	    }
+
     	    // DEPRECATED
-    	    // if (get_option( 'tumblog_woo_tumblog_upgraded') == 'true') { 	
-    	    	
+    	    // if (get_option( 'tumblog_woo_tumblog_upgraded') == 'true') {
+
     	    	if ($content_method == 'post_format') {
   					set_post_format( $post_id, 'image' );
   				} else {
@@ -467,18 +467,18 @@ function woo_tumblog_publish($type, $data) {
 					} else {
 						$tags[0] = $tumblog_items['images'];
 					}
-					wp_set_post_terms( $post_id, $tags, 'tumblog' );    
+					wp_set_post_terms( $post_id, $tags, 'tumblog' );
 				}
-			
+
 			// DEPRECATED
 			// }
-	   	    
+
 	   	    break;
 	   	case 'link':
 	   	    //Create post object
 			$tumbl_note['post_title'] = $data['link-title'];
 			$tumbl_note['post_content'] = $data['tumblog-content'];
-			
+
 			// DEPRECATED
 			// if (get_option( 'tumblog_woo_tumblog_upgraded') == 'true') {
 				if ($data['tumblog-status'] != '') {
@@ -510,7 +510,7 @@ function woo_tumblog_publish($type, $data) {
 	  		// }
 	  		$tumbl_note['post_author'] = $current_user->ID;
 	  		$tumbl_note['tags_input'] = $data['tumblog-tags'];
-	  		
+
 	  		// DEPRECATED
 	  		//Get Category from Theme Options
 	  		/*
@@ -521,11 +521,11 @@ function woo_tumblog_publish($type, $data) {
 	  			$categories = array();
 	  		}
 	  		*/
-	  		
+
 	  		$categories = array();
-	  		
+
 	  		$post_cat_array = $data['post_category'];
-	  		if(empty($post_cat_array)) 
+	  		if(empty($post_cat_array))
 	  		{
 	  		  //Do nothing
 	  		} else {
@@ -539,10 +539,10 @@ function woo_tumblog_publish($type, $data) {
 	  		$post_id = wp_insert_post($tumbl_note);
 	  		//Add Custom Field Data to the Post
 	  		add_post_meta($post_id, $tumblog_custom_fields['link-url'], $data['link-url'], true);
-	  		
+
 	  		// DEPRECATED
 	  		// if (get_option( 'tumblog_woo_tumblog_upgraded') == 'true') {
-	  			
+
 	  			if ($content_method == 'post_format') {
   					set_post_format( $post_id, 'link' );
   				} else {
@@ -563,13 +563,13 @@ function woo_tumblog_publish($type, $data) {
 				}
 			// DEPRECATED
 			// }
-			
+
 	        break;
 	    case 'quote':
 	        //Create post object
 	  		$tumbl_note['post_title'] = $data['quote-title'];
 	  		$tumbl_note['post_content'] = $data['tumblog-content'];
-	  		
+
 	  		// DEPRECATED
 	  		// if (get_option( 'tumblog_woo_tumblog_upgraded') == 'true') {
 	  			if ($data['tumblog-status'] != '') {
@@ -601,7 +601,7 @@ function woo_tumblog_publish($type, $data) {
 	  		// }
 	  		$tumbl_note['post_author'] = $current_user->ID;
 	  		$tumbl_note['tags_input'] = $data['tumblog-tags'];
-	  		
+
 	  		// DEPRECATED
 	  		//Get Category from Theme Options
 	  		/*
@@ -612,11 +612,11 @@ function woo_tumblog_publish($type, $data) {
 	  			$categories = array();
 	  		}
 	  		*/
-	  		
+
 	  		$categories = array();
-	  		
+
 	  		$post_cat_array = $data['post_category'];
-	  		if(empty($post_cat_array)) 
+	  		if(empty($post_cat_array))
 	  		{
 	  		  //Do nothing
 	  		} else {
@@ -634,7 +634,7 @@ function woo_tumblog_publish($type, $data) {
 	        add_post_meta($post_id, $tumblog_custom_fields['quote-url'], $data['quote-url'], true);
 	        // DEPRECATED
 	        // if (get_option( 'tumblog_woo_tumblog_upgraded') == 'true') {
-	        	
+
 	        	if ($content_method == 'post_format') {
   					set_post_format( $post_id, 'quote' );
   				} else {
@@ -655,13 +655,13 @@ function woo_tumblog_publish($type, $data) {
 				}
 			// DEPRECATED
 			// }
-	        
+
 	        break;
 	    case 'audio':
 	        //Create post object
 	  		$tumbl_note['post_title'] = $data['audio-title'];
 	  		$tumbl_note['post_content'] = $data['tumblog-content'];
-	  		
+
 	  		// DEPRECATED
 	  		// if (get_option( 'tumblog_woo_tumblog_upgraded') == 'true') {
 	  			if ($data['tumblog-status'] != '') {
@@ -689,12 +689,12 @@ function woo_tumblog_publish($type, $data) {
   				}
 	  			$date_formatted = date($php_formatting, strtotime($date_raw));
 	  			$tumbl_note['post_date'] = $date_formatted;
-	  		
+
 	  		// DEPRECATED
 	  		// }
 	  		$tumbl_note['post_author'] = $current_user->ID;
 	  		$tumbl_note['tags_input'] = $data['tumblog-tags'];
-	  		
+
 	  		// DEPRECATED
 	  		//Get Category from Theme Options
 	  		/*
@@ -705,11 +705,11 @@ function woo_tumblog_publish($type, $data) {
 	  			$categories = array();
 	  		}
 	  		*/
-	  		
+
 	  		$categories = array();
-	  		
+
 	  		$post_cat_array = $data['post_category'];
-	  		if(empty($post_cat_array)) 
+	  		if(empty($post_cat_array))
 	  		{
 	  		  //Do nothing
 	  		} else {
@@ -755,7 +755,7 @@ function woo_tumblog_publish($type, $data) {
 				}
 			// DEPRECATED
 			// }
-			
+
 	        break;
 	    default:
 	    	break;
@@ -764,28 +764,28 @@ function woo_tumblog_publish($type, $data) {
 
 //Handles AJAX Post
 function woo_tumblog_file_upload() {
-	global $wpdb; 
+	global $wpdb;
 	//Upload overrides
 	$filename = $_FILES['userfile']; // [name] [tmp_name]
 	$override['test_form'] = false;
-	$override['action'] = 'wp_handle_upload';    
-	//Handle Uploaded File	
+	$override['action'] = 'wp_handle_upload';
+	//Handle Uploaded File
 	$uploaded_file = wp_handle_upload($filename, $override); // [file] [url] [type]
-	//Create Attachment Object	
+	//Create Attachment Object
 	$attachment['post_title'] = $filename['name']; //post_title, post_content (the value for this key should be the empty string), post_status and post_mime_type
 	$attachment['post_content'] = '';
 	$attachment['post_status'] = 'inherit';
 	$attachment['post_mime_type'] = $uploaded_file['type'];
 	$attachment['guid'] = $uploaded_file['url'];
 	//Prepare file attachment
-	$wud = wp_upload_dir(); // [path] [url] [subdir] [basedir] [baseurl] [error] 
+	$wud = wp_upload_dir(); // [path] [url] [subdir] [basedir] [baseurl] [error]
 	$filename_attach = $wud['basedir'].$uploaded_file['file'];
 	//Insert Attachment
 	$attach_id = wp_insert_attachment( $attachment, $filename_attach, 0 );
   	$attach_data = wp_generate_attachment_metadata( $attach_id, $filename_attach );
   	wp_update_attachment_metadata( $attach_id,  $attach_data );
 	//Handle Errors and Response
-	if(!empty($uploaded_file['error'])) {echo 'Upload Error: ' . $uploaded_file['error']; }	
+	if(!empty($uploaded_file['error'])) {echo 'Upload Error: ' . $uploaded_file['error']; }
 	else { echo $uploaded_file['url'].'|'.$attach_id.'|'; } // Is the Response
 }
 
@@ -811,12 +811,12 @@ function woo_tumblog_dashboard_widget_output() {
 		jQuery.noConflict();
 		//AJAX Functions
 		jQuery(document).ready(function(){
-		
+
 			 //JQUERY DATEPICKER
 			jQuery( '.date-picker').each(function (){
 				jQuery( '#' + jQuery(this).attr( 'id')).datepicker({showOn: 'button', buttonImage: '<?php echo get_template_directory_uri(); ?>/functions/images/calendar.gif', buttonImageOnly: true});
 			});
-			
+
 			jQuery( '#advanced-options-toggle').click(function () {
 				jQuery( '#meta-fields').toggle();
 				if ( jQuery(this).text() == 'View Advanced Options' ) {
@@ -825,7 +825,7 @@ function woo_tumblog_dashboard_widget_output() {
 					jQuery(this).text( 'View Advanced Options' );
 				}
 			});
-			
+
 			//MENU BUTTON CLICK EVENTS
 			jQuery( '#articles-menu-button').click(function ()
 			{
@@ -847,11 +847,11 @@ function woo_tumblog_dashboard_widget_output() {
 				<?php if (get_option( 'woo_tumblog_content_method') != 'post_format') { ?>
 				//Additional Tumblogs Checks
 				jQuery( '#additional-tumblogs input').each(function(){
-					
+
 					var elementid = jQuery(this).val();
 					<?php $term_array = &get_term( $tumblog_items['articles'], 'tumblog' ); ?>
 					var catid = <?php echo $tumblog_items['articles']; ?>;
-					
+
 					if (elementid == catid) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -859,16 +859,16 @@ function woo_tumblog_dashboard_widget_output() {
 					} else {
 						//make visible
 						jQuery(this).removeAttr( 'class' );
-						jQuery(this).attr( 'checked', false);	
+						jQuery(this).attr( 'checked', false);
 					}
 				});
-				
+
 				jQuery( '#additional-tumblogs li').each(function(){
-					
+
 					var elementname = jQuery(this).text();
 					var catname = '<?php echo $term_array->name; ?>';
-					var elementnamesub = elementname.substring(1); 
-					
+					var elementnamesub = elementname.substring(1);
+
 					if (elementnamesub == catname) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -882,10 +882,10 @@ function woo_tumblog_dashboard_widget_output() {
 					myNicEditor = new nicEditor({ buttonList : ['bold','italic','underline','ol','ul','left','center','right','justify','link','unlink','strikeThrough','xhtml','image'], iconsPath : '<?php echo get_template_directory_uri(); ?>/functions/images/nicEditorIcons.gif'}).panelInstance( 'test-content' );
 				} else {
 					myNicEditor = nicEditors.findEditor( 'test-content' );
-				}	
-				jQuery( '#note-title').focus();	
+				}
+				jQuery( '#note-title').focus();
 				nicEditors.findEditor( 'test-content').setContent( '' );
-				jQuery( '#content-fields > div').addClass( 'editorwidth' );		
+				jQuery( '#content-fields > div').addClass( 'editorwidth' );
 			});
 			jQuery( '#images-menu-button').click(function ()
 			{
@@ -907,11 +907,11 @@ function woo_tumblog_dashboard_widget_output() {
 				<?php if (get_option( 'woo_tumblog_content_method') != 'post_format') { ?>
 				//Additional Tumblogs Checks
 				jQuery( '#additional-tumblogs input').each(function(){
-					
+
 					var elementid = jQuery(this).val();
 					<?php $term_array = &get_term( $tumblog_items['images'], 'tumblog' ); ?>
 					var catid = <?php echo $tumblog_items['images']; ?>;
-					
+
 					if (elementid == catid) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -919,16 +919,16 @@ function woo_tumblog_dashboard_widget_output() {
 					} else {
 						//make visible
 						jQuery(this).removeAttr( 'class' );
-						jQuery(this).attr( 'checked', false);	
+						jQuery(this).attr( 'checked', false);
 					}
 				});
-				
+
 				jQuery( '#additional-tumblogs li').each(function(){
-					
+
 					var elementname = jQuery(this).text();
 					var catname = '<?php echo $term_array->name; ?>';
-					var elementnamesub = elementname.substring(1); 
-					
+					var elementnamesub = elementname.substring(1);
+
 					if (elementnamesub == catname) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -942,8 +942,8 @@ function woo_tumblog_dashboard_widget_output() {
 					myNicEditor = new nicEditor({ buttonList : ['bold','italic','underline','ol','ul','left','center','right','justify','link','unlink','strikeThrough','xhtml','image'], iconsPath : '<?php echo get_template_directory_uri(); ?>/functions/images/nicEditorIcons.gif'}).panelInstance( 'test-content' );
 				} else {
 					myNicEditor = nicEditors.findEditor( 'test-content' );
-				}	
-				jQuery( '#image-title').focus();	
+				}
+				jQuery( '#image-title').focus();
 				nicEditors.findEditor( 'test-content').setContent( '' );
 				jQuery( '#content-fields > div').addClass( 'editorwidth' );
 			});
@@ -967,11 +967,11 @@ function woo_tumblog_dashboard_widget_output() {
 				<?php if (get_option( 'woo_tumblog_content_method') != 'post_format') { ?>
 				//Additional Tumblogs Checks
 				jQuery( '#additional-tumblogs input').each(function(){
-					
+
 					var elementid = jQuery(this).val();
 					<?php $term_array = &get_term( $tumblog_items['links'], 'tumblog' ); ?>
 					var catid = <?php echo $tumblog_items['links']; ?>;
-					
+
 					if (elementid == catid) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -979,16 +979,16 @@ function woo_tumblog_dashboard_widget_output() {
 					} else {
 						//make visible
 						jQuery(this).removeAttr( 'class' );
-						jQuery(this).attr( 'checked', false);	
+						jQuery(this).attr( 'checked', false);
 					}
 				});
-				
+
 				jQuery( '#additional-tumblogs li').each(function(){
-					
+
 					var elementname = jQuery(this).text();
 					var catname = '<?php echo $term_array->name; ?>';
-					var elementnamesub = elementname.substring(1); 
-					
+					var elementnamesub = elementname.substring(1);
+
 					if (elementnamesub == catname) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -1002,8 +1002,8 @@ function woo_tumblog_dashboard_widget_output() {
 					myNicEditor = new nicEditor({ buttonList : ['bold','italic','underline','ol','ul','left','center','right','justify','link','unlink','strikeThrough','xhtml','image'], iconsPath : '<?php echo get_template_directory_uri(); ?>/functions/images/nicEditorIcons.gif'}).panelInstance( 'test-content' );
 				} else {
 					myNicEditor = nicEditors.findEditor( 'test-content' );
-				}	
-				jQuery( '#link-title').focus();	
+				}
+				jQuery( '#link-title').focus();
 				nicEditors.findEditor( 'test-content').setContent( '' );
 				jQuery( '#content-fields > div').addClass( 'editorwidth' );
 			});
@@ -1027,11 +1027,11 @@ function woo_tumblog_dashboard_widget_output() {
 				<?php if (get_option( 'woo_tumblog_content_method') != 'post_format') { ?>
 				//Additional Tumblogs Checks
 				jQuery( '#additional-tumblogs input').each(function(){
-					
+
 					var elementid = jQuery(this).val();
 					<?php $term_array = &get_term( $tumblog_items['audio'], 'tumblog' ); ?>
 					var catid = <?php echo $tumblog_items['audio']; ?>;
-					
+
 					if (elementid == catid) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -1039,16 +1039,16 @@ function woo_tumblog_dashboard_widget_output() {
 					} else {
 						//make visible
 						jQuery(this).removeAttr( 'class' );
-						jQuery(this).attr( 'checked', false);	
+						jQuery(this).attr( 'checked', false);
 					}
 				});
-				
+
 				jQuery( '#additional-tumblogs li').each(function(){
-					
+
 					var elementname = jQuery(this).text();
 					var catname = '<?php echo $term_array->name; ?>';
-					var elementnamesub = elementname.substring(1); 
-					
+					var elementnamesub = elementname.substring(1);
+
 					if (elementnamesub == catname) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -1062,8 +1062,8 @@ function woo_tumblog_dashboard_widget_output() {
 					myNicEditor = new nicEditor({ buttonList : ['bold','italic','underline','ol','ul','left','center','right','justify','link','unlink','strikeThrough','xhtml','image'], iconsPath : '<?php echo get_template_directory_uri(); ?>/functions/images/nicEditorIcons.gif'}).panelInstance( 'test-content' );
 				} else {
 					myNicEditor = nicEditors.findEditor( 'test-content' );
-				}	
-				jQuery( '#audio-title').focus();	
+				}
+				jQuery( '#audio-title').focus();
 				nicEditors.findEditor( 'test-content').setContent( '' );
 				jQuery( '#content-fields > div').addClass( 'editorwidth' );
 			});
@@ -1087,11 +1087,11 @@ function woo_tumblog_dashboard_widget_output() {
 				<?php if (get_option( 'woo_tumblog_content_method') != 'post_format') { ?>
 				//Additional Tumblogs Checks
 				jQuery( '#additional-tumblogs input').each(function(){
-					
+
 					var elementid = jQuery(this).val();
 					<?php $term_array = &get_term( $tumblog_items['video'], 'tumblog' ); ?>
 					var catid = <?php echo $tumblog_items['video']; ?>;
-					
+
 					if (elementid == catid) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -1099,16 +1099,16 @@ function woo_tumblog_dashboard_widget_output() {
 					} else {
 						//make visible
 						jQuery(this).removeAttr( 'class' );
-						jQuery(this).attr( 'checked', false);	
+						jQuery(this).attr( 'checked', false);
 					}
 				});
-				
+
 				jQuery( '#additional-tumblogs li').each(function(){
-					
+
 					var elementname = jQuery(this).text();
 					var catname = '<?php echo $term_array->name; ?>';
-					var elementnamesub = elementname.substring(1); 
-					
+					var elementnamesub = elementname.substring(1);
+
 					if (elementnamesub == catname) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -1122,8 +1122,8 @@ function woo_tumblog_dashboard_widget_output() {
 					myNicEditor = new nicEditor({ buttonList : ['bold','italic','underline','ol','ul','left','center','right','justify','link','unlink','strikeThrough','xhtml','image'], iconsPath : '<?php echo get_template_directory_uri(); ?>/functions/images/nicEditorIcons.gif'}).panelInstance( 'test-content' );
 				} else {
 					myNicEditor = nicEditors.findEditor( 'test-content' );
-				}	
-				jQuery( '#video-title').focus();	
+				}
+				jQuery( '#video-title').focus();
 				nicEditors.findEditor( 'test-content').setContent( '' );
 				jQuery( '#content-fields > div').addClass( 'editorwidth' );
 			});
@@ -1147,11 +1147,11 @@ function woo_tumblog_dashboard_widget_output() {
 				<?php if (get_option( 'woo_tumblog_content_method') != 'post_format') { ?>
 				//Additional Tumblogs Checks
 				jQuery( '#additional-tumblogs input').each(function(){
-					
+
 					var elementid = jQuery(this).val();
 					<?php $term_array = &get_term( $tumblog_items['quotes'], 'tumblog' ); ?>
 					var catid = <?php echo $tumblog_items['quotes']; ?>;
-					
+
 					if (elementid == catid) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -1159,16 +1159,16 @@ function woo_tumblog_dashboard_widget_output() {
 					} else {
 						//make visible
 						jQuery(this).removeAttr( 'class' );
-						jQuery(this).attr( 'checked', false);	
+						jQuery(this).attr( 'checked', false);
 					}
 				});
-				
+
 				jQuery( '#additional-tumblogs li').each(function(){
-					
+
 					var elementname = jQuery(this).text();
 					var catname = '<?php echo $term_array->name; ?>';
-					var elementnamesub = elementname.substring(1); 
-					
+					var elementnamesub = elementname.substring(1);
+
 					if (elementnamesub == catname) {
 						//make invisible
 						jQuery(this).addClass( 'hide-cat' );
@@ -1182,13 +1182,13 @@ function woo_tumblog_dashboard_widget_output() {
 					myNicEditor = new nicEditor({ buttonList : ['bold','italic','underline','ol','ul','left','center','right','justify','link','unlink','strikeThrough','xhtml','image'], iconsPath : '<?php echo get_template_directory_uri(); ?>/functions/images/nicEditorIcons.gif'}).panelInstance( 'test-content' );
 				} else {
 					myNicEditor = nicEditors.findEditor( 'test-content' );
-				}	
-				jQuery( '#quote-title').focus();	
+				}
+				jQuery( '#quote-title').focus();
 				nicEditors.findEditor( 'test-content').setContent( '' );
 				jQuery( '#content-fields > div').addClass( 'editorwidth' );
 			});
-			
-			
+
+
 			//AJAX FORM POST
 			jQuery( '#tumblog-form').ajaxForm(
 			{
@@ -1197,31 +1197,31 @@ function woo_tumblog_dashboard_widget_output() {
 							action: 'woo_tumblog_post',
 							type: 'upload',
 							data: 'formpost' },
-				// handler function for success event 
-				success: function(responseText, statusText) 
+				// handler function for success event
+				success: function(responseText, statusText)
 					{
 						jQuery( '#test-response').html( '<span class="success">'+'Published!'+'</span>').fadeIn( '3000').animate({ opacity: 1.0 },2000).fadeOut();
 						jQuery( '#ajax-loader').hide();
 						resetTumblogQuickPress();
 					},
-				// handler function for errors 
-				error: function(request) 
+				// handler function for errors
+				error: function(request)
 				{
-					// parse it for WordPress error 
-					if (request.responseText.search(/<title>WordPress &rsaquo; Error<\/title>/) != -1) 
+					// parse it for WordPress error
+					if (request.responseText.search(/<title>WordPress &rsaquo; Error<\/title>/) != -1)
 					{
-						var data = request.responseText.match(/<p>(.*)<\/p>/); 
+						var data = request.responseText.match(/<p>(.*)<\/p>/);
 						jQuery( '#test-response').html( '<span class="error">'+ data[1] +'</span>' );
-					} 
-					else 
+					}
+					else
 					{
 						jQuery( '#test-response').html( '<span class="error">An error occurred, please notify the administrator.</span>' );
-					} 
+					}
 				},
-				beforeSubmit: function(formData, jqForm, options) 
+				beforeSubmit: function(formData, jqForm, options)
 				{
 					jQuery( '#ajax-loader').show();
-				} 
+				}
 			});
 			//AJAX IMAGE UPLOAD
 			new AjaxUpload( '#image_upload_button', {
@@ -1245,7 +1245,7 @@ function woo_tumblog_dashboard_widget_output() {
 				onComplete: function(file, response) {
 					jQuery( '#test-response').html( '<span class="success">'+'Image Uploaded!'+'</span>').fadeIn( '3000').animate({ opacity: 1.0 },2000).fadeOut();
 					var splitResults = response.split( '|' );
-					jQuery( '#image-upload').attr( 'value',splitResults[0]);		
+					jQuery( '#image-upload').attr( 'value',splitResults[0]);
 					jQuery( '#image-id').attr( 'value',splitResults[1]);
 				}
 			});
@@ -1271,21 +1271,21 @@ function woo_tumblog_dashboard_widget_output() {
 				onComplete: function(file, response) {
 					jQuery( '#test-response').html( '<span class="success">'+'Audio Uploaded!'+'</span>').fadeIn( '3000').animate({ opacity: 1.0 },2000).fadeOut();
 					var splitResults = response.split( '|' );
-					jQuery( '#audio-upload').attr( 'value',splitResults[0]);		
+					jQuery( '#audio-upload').attr( 'value',splitResults[0]);
 					jQuery( '#audio-id').attr( 'value',splitResults[1]);
 				}
 			});
 		});
-		
+
 		</script>
 	<div id="tumblog-post">
-	
+
 		<form name="tumblog-form" onsubmit="updateContent();" id="tumblog-form" method="post" action="<?php echo admin_url( "admin-ajax.php" ); ?>">
-	
+
 		<img id="ajax-loader" src="<?php echo get_template_directory_uri(); ?>/functions/images/ajax-loader.gif" />
-	
+
 		<div id="test-response"></div>
-	
+
 		<div id="tumblog-menu">
 			<a id="articles-menu-button" href="#" title="#">Article</a>
 			<a id="images-menu-button" href="#" title="#">Image</a>
@@ -1294,14 +1294,14 @@ function woo_tumblog_dashboard_widget_output() {
 			<a id="videos-menu-button" href="#" title="#">Video</a>
 			<a id="quotes-menu-button" href="#" title="#">Quote</a>
 		</div>
-	
+
 		<div id="article-fields" class="hide-fields">
 			<h4 id="quick-post-title"><label for="note-title">Title</label></h4>
 			<div>
 				<input name="note-title" id="note-title" tabindex="1" autocomplete="off" value="" type="text" class="tumblog-title">
 			</div>
 		</div>
-	
+
 		<div id="video-fields" class="hide-fields">
 			<h4 id="quick-post-title"><label for="video-title">Title</label></h4>
 			<div>
@@ -1310,7 +1310,7 @@ function woo_tumblog_dashboard_widget_output() {
 			<h4 id="quick-post-title"><label for="video-embed">Embed Video Code</label></h4>
 			<textarea style="width:100%" id="video-embed" name="video-embed" tabindex="2"></textarea>
 		</div>
-		
+
 		<div id="image-fields" class="hide-fields">
 			<h4 id="quick-post-title"><label for="image-title">Title</label></h4>
 			<div>
@@ -1331,7 +1331,7 @@ function woo_tumblog_dashboard_widget_output() {
 			</div>
 			<input type="hidden" id="image-id" name="image-id" value="" />
 		</div>
-		
+
 		<div id="link-fields" class="hide-fields">
 			<h4 id="quick-post-title"><label for="link-title">Title</label></h4>
 			<div>
@@ -1342,7 +1342,7 @@ function woo_tumblog_dashboard_widget_output() {
 				<input name="link-url" id="link-url" tabindex="2" autocomplete="off" value="" type="text">
 			</div>
 		</div>
-		
+
 		<div id="quote-fields" class="hide-fields">
 			<h4 id="quick-post-title"><label for="quote-title">Title</label></h4>
 			<div>
@@ -1359,7 +1359,7 @@ function woo_tumblog_dashboard_widget_output() {
 				<input name="quote-author" id="quote-author" tabindex="4" autocomplete="off" value="" type="text">
 			</div>
 		</div>
-		
+
 		<div id="audio-fields" class="hide-fields">
 			<h4 id="quick-post-title"><label for="audio-title">Title</label></h4>
 			<div>
@@ -1380,7 +1380,7 @@ function woo_tumblog_dashboard_widget_output() {
 			</div>
 			<input type="hidden" id="audio-id" name="audio-id" value="" />
 		</div>
-		
+
 		<div id="content-fields" class="hide-fields">
 			<?php if ( current_user_can( 'upload_files' ) ) : ?>
 				<?php //the_editor( '', $id = 'content', $prev_id = 'title', $media_buttons = false, $tab_index = 5); ?>
@@ -1390,7 +1390,7 @@ function woo_tumblog_dashboard_widget_output() {
 			<input type="hidden" id="tumblog-type" name="tumblog-type" value="article" />
 			<p><a id="advanced-options-toggle" onclick="">View Advanced Options</a></p>
 		</div>
-		
+
 		<div id="meta-fields" class="hide-fields">
 			<p>
 				<?php // START - POST STATUS AND DATE TIME ?>
@@ -1404,12 +1404,12 @@ function woo_tumblog_dashboard_widget_output() {
 				<?php $time_now_hours = date_i18n( "H" ); ?>
 				<?php $time_now_mins = date_i18n( "i" ); ?>
 				<?php $post_id = 0; ?>
-				<strong><label for="tumblog-date">Post Date : </label></strong> <input name="tumblog-date" id="tumblog-date" tabindex="7" value="<?php echo $date_formatted; ?>" type="text" class="date-picker" style="width:100px;margin-left:20px;"> @ <input class="tumblog-time" name="tumblog-hours" id="tumblog-hours" maxlength="2" size="2" value="<?php echo $time_now_hours; ?>" type="text">:<input class="tumblog-time" name="tumblog-mins" id="tumblog-mins" maxlength="2" size="2" value="<?php echo $time_now_mins; ?>" type="text">
+				<strong><label for="tumblog-date">Post Date : </label></strong> <input name="tumblog-date" id="tumblog-date" tabindex="7" value="<?php echo esc_attr( $date_formatted ); ?>" type="text" class="date-picker" style="width:100px;margin-left:20px;"> @ <input class="tumblog-time" name="tumblog-hours" id="tumblog-hours" maxlength="2" size="2" value="<?php echo esc_attr( $time_now_hours ); ?>" type="text">:<input class="tumblog-time" name="tumblog-mins" id="tumblog-mins" maxlength="2" size="2" value="<?php echo esc_attr( $time_now_mins ); ?>" type="text">
 				<?php // END - POST STATUS AND DATE TIME ?>
 			</p>
 			<br />
 			<div id="additional-categories" style="width:<?php if (get_option( 'woo_tumblog_content_method') != 'post_format') { ?>47%;float:left;<?php } else { ?>94%;<?php } ?>">
-				<strong><label for="post_category[]">Additional Categories : </label></strong> 
+				<strong><label for="post_category[]">Additional Categories : </label></strong>
 				<?php // START - MULTI CATEGORY DROP DOWN ?>
 				<?php $taxonomy = 'category'; ?>
 				<div id="<?php echo $taxonomy; ?>-all" class="tabs-panel" style="height:100px;overflow:auto;border: 1px solid #CCCCCC;margin-top:6px;margin-bottom:6px;">
@@ -1425,7 +1425,7 @@ function woo_tumblog_dashboard_widget_output() {
 			</div>
 			<?php if (get_option( 'woo_tumblog_content_method') != 'post_format') { ?>
 			<div id="additional-tumblogs" style="width:47%;float:right;">
-				<strong><label for="post_tumblog[]">Additional Tumblogs : </label></strong> 
+				<strong><label for="post_tumblog[]">Additional Tumblogs : </label></strong>
 				<?php // START - MULTI TUMBLOG DROP DOWN ?>
 				<?php $taxonomy = 'tumblog'; ?>
 				<div id="<?php echo $taxonomy; ?>-all" class="tabs-panel" style="height:100px;overflow:auto;border: 1px solid #CCCCCC;margin-top:6px;margin-bottom:6px;">
@@ -1441,25 +1441,25 @@ function woo_tumblog_dashboard_widget_output() {
 			</div>
 			<?php } ?>
 		</div>
-		
+
 		<div id="tag-fields" class="hide-fields" style="clear:both;padding-top:10px;">
 			<h4 id="tumblog-tags-title"><label for="tumblog-tags">Tags</label></h4>
 			<div>
 				<input name="tumblog-tags" id="tumblog-tags" tabindex="6" autocomplete="off" value="" type="text">
 			</div>
 		</div>
-		
+
 		<div id="tumblog-submit-fields" class="hide-fields">
 			<input name="tumblogsubmit" type="submit" id="tumblogsubmit" class="button-primary" tabindex="7" value="Submit" onclick="return validateInput();" />
 			<input name="tumblogreset" type="reset" id="tumblogreset" class="button" tabindex="8" value="Reset" />
 		</div>
-		
+
 		</form>
-		
+
 	</div><div id="debug-tumblog"></div>
-		
+
 	<?php
 	}
-} 
+}
 
 ?>
