@@ -14,8 +14,10 @@
 
 				<div class="post-alt blog" id="post-<?php the_ID(); ?>">
 				
-					<h2><a title="Permanent Link to <?php the_title(); ?>" href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h2>					<div style="height: 16px;" onmouseover="setShare('<?php the_title(); ?>', '<?php the_permalink() ?>');">					<!-- JiaThis Button BEGIN --><div id="ckepop"><!--<span class="jiathis_txt">���?��</span>--><a class="jiathis_button_twitter">Twitter</a><a class="jiathis_button_fb">Facebook</a><a class="jiathis_button_linkedin">LinkedIn</a></div><script type="text/javascript">function setShare(title, url) {jiathis_config.title = title;jiathis_config.url = url;}var jiathis_config = {url: "",title: ""}</script><script type="text/javascript" >var jiathis_config={	data_track_clickback:true, siteNum:3,	sm:"twitter,fb,linkedin",	hideMore:true}</script> <script type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js?uid=1539614" charset="utf-8"></script><!-- JiaThis Button END -->			</div>
-					<p class="post_date"><a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>" class="avatar_link"><?php echo get_avatar( get_the_author_meta('ID'), 32 ); ?></a><?php _e('Posted on','woothemes'); ?> <?php the_time('d F Y'); ?> by <b><?php the_author_posts_link(); ?></b>.<br /> <span class="singletags"><?php if (function_exists('the_tags')) { ?><?php the_tags('Tags: ', ', ', ''); ?><?php } ?></span></p>
+					<h2><a title="Permanent Link to <?php the_title(); ?>" href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h2>
+					
+					<p class="post_date"><a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>" class="avatar_link"><?php echo get_avatar( get_the_author_meta('ID'), 32 ); ?></a><?php _e('Posted on','woothemes'); ?> <?php the_time('d F Y'); ?> by <b><?php the_author_posts_link(); ?></b> <a href="mailto:<?php echo antispambot(get_the_author_email()); ?>"><img src="<?php bloginfo('template_url'); ?>/images/mail-18.png" align="top" alt="email author"/></a><br /> 
+<span class="singletags"><?php if (function_exists('the_tags')) { ?><?php the_tags('Tags: ', ', ', ''); ?><?php } ?></span></p>
                     
                     <?php 
                     if(woo_get_embed('embed',595,420))
