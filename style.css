@@ -16,7 +16,7 @@ Author URI: http://www.woothemes.com/
 }
 body{
 	color: #333;
-	background: #ddd url(images/gradient_texture.png) repeat 0 0;
+	background: #fff;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 12px;
 	line-height: 18px;
@@ -43,18 +43,18 @@ li{
 /*========= LAYOUT =========*/
 
 #page{
-	width: 960px;
+	width: 980px;
 	background-color: #FFFFFF;
 	margin:15px auto;
-	border: 1px solid #CCCCCC;
+	border: 1px solid #fff;
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-o-border-radius: 4px;
 	-khtml-border-radius: 4px;
-	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
-	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
-	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 6px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 6px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 6px;
 }
 /*--- Main Columns ---*/
 #columns{
@@ -64,7 +64,7 @@ li{
 }
 .col1{
 	float: left;
-	width: 595px;
+	width: 615px;
 	padding-right:15px;
 }
 .col2{
@@ -90,7 +90,7 @@ li{
 	background-color: #FFFFFF;
 	margin:15px 15px 0px !important;
 	border-top: 1px dotted #eee;
-	width: 930px !important;
+	width: 950px !important;
 }
 #nav-left {
 	float:left;
@@ -194,7 +194,7 @@ li{
 #suckerfish ul.xoxo li {display:inline;padding-left: 2px;}
 /*- Nav / Dropdowns-*/
 #nav2 {
-	margin:0 0 15px 15px !important;
+	margin:0 0 32px 15px !important;
 	margin:0 0 7px 7px;	 
 }
 
@@ -207,7 +207,7 @@ li{
 	padding: 0;
 	font-size:13px;
 	float:left;
-	width:930px;
+	width:950px;
 	border-top: 1px dotted #eee;
 }
 #nav2 a {
