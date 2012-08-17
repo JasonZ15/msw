@@ -47,14 +47,7 @@ li{
 	background-color: #FFFFFF;
 	margin:15px auto;
 	border: 1px solid #fff;
-	border-radius: 4px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	-o-border-radius: 4px;
-	-khtml-border-radius: 4px;
-	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 6px;
-	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 6px;
-	box-shadow: rgba(0,0,0,0.3) 0 1px 6px;
+	border-top: 1px solid #EEEEEE;
 }
 /*--- Main Columns ---*/
 #columns{
@@ -66,10 +59,11 @@ li{
 	float: left;
 	width: 615px;
 	padding-right:15px;
+	padding-left: 10px;
 }
 .col2{
 	float: left;
-	width: 320px;
+	width: 300px;
 }
 /*--- Sub Columns ---*/
 .subcol{

@@ -63,8 +63,8 @@ ul.wooTabs li a.selected, ul.wooTabs li a:hover {
 	background-color: #CC0000;
 }
 .widget h3 {
-	color: #FFFFFF;
-	background-color: #CC0000;
+	color: #CC0000;
+	background-color: #EEEEEE;
 }
 #footer a{
 	color: #CC0000;
