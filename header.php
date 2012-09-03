@@ -113,7 +113,7 @@
 	       
 		<?php if (get_option('woo_texttitle') <> "true") : $logo = get_option('woo_logo'); ?>
             <a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('description'); ?>">
-                <img src="<?php if ($logo) echo $logo; else { bloginfo('template_directory'); ?>/images/logo.gif<?php } ?>" alt="<?php bloginfo('name'); ?>" />mobile Internet insights from China</a>
+                <img src="<?php if ($logo) echo $logo; else { bloginfo('template_directory'); ?>/images/logo.gif<?php } ?>" alt="<?php bloginfo('name'); ?>" />Mobile Internet news from China and the world</a>
         <?php endif; ?> 
         
         <?php if( is_singular() ) : ?>
