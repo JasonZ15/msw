@@ -1164,7 +1164,7 @@ img.ui-datepicker-trigger { border: 0px; padding: 0px; }
 .entry .gform_wrapper .gfield_checkbox li, .gform_wrapper .gfield_radio li { list-style: none !important; }
 
 /* Text title */
-#logo  { float:left; height: 70px; width: 329px; overflow: hidden;}
+#logo  { float:left; height: 80px; width: 379px; overflow: hidden;}
 #logo img  { }
 #logo .site-title, #logo .site-description  { font-family:"Helvetica Neue", Helvetica, Arial, serif; color: #000; display:none; line-height:100px; }
 #logo .site-title a { color:#222; font-size:36px; text-transform:uppercase; font-weight:bold; text-decoration:none; }
